@@ -418,7 +418,15 @@ Tum meri sabse pyaari feeling ho, aur main chahta hoon ye hamesha aise hi rahe. 
   const SHEET_URL = "https://script.google.com/macros/s/AKfycbx6L9At72Txfs2kCpvePDeaTq7PvVeoFL6KPaIiVCYRe7CI47ayJE8ymU5-DJw7Lp1Q1A/exec";
 
   function logClick() {
-    fetch(SHEET_URL, { method: "POST", mode: "no-cors" }).catch(() => {});
+    // Uses an image beacon (GET request) instead of fetch — this avoids
+    // CORS/redirect issues and works reliably across all browsers,
+    // ad-blockers, and extensions, since it's just loading an "image".
+    try {
+      const beacon = new Image();
+      beacon.src = SHEET_URL + "?t=" + Date.now();
+    } catch (err) {
+      // fail silently, never block the UI
+    }
   }
 
   function loveBurst() {
