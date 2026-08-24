@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry Nehu 🌸</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Playfair+Display:ital,wght@0,600;1,500&family=Poppins:wght@300;400;500&display=swap');
+
+  :root {
+    --cream: #FFF8F1;
+    --blush: #F3D4D8;
+    --rose: #C97B84;
+    --wine: #6B2E3A;
+    --sage: #8A9B6E;
+    --gold: #C9A227;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(ellipse at top, #FFFDFB 0%, var(--cream) 45%, #F7E8DE 100%);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  .sky {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .card {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    width: 100%;
+    background: #FFFDFB;
+    border-radius: 28px;
+    box-shadow: 0 30px 60px -20px rgba(107, 46, 58, 0.25), 0 0 0 1px rgba(107,46,58,0.04);
+    padding: 48px 36px 40px;
+    text-align: center;
+    transition: box-shadow 0.6s ease;
+  }
+
+  .eyebrow {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: var(--rose);
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 34px;
+    color: var(--wine);
+    margin: 0 0 8px;
+    line-height: 1.15;
+  }
+
+  .sub {
+    font-size: 14.5px;
+    color: #9A7B7E;
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+
+  /* Flower stage */
+  .garden {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .stem {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 90px;
+    background: linear-gradient(var(--sage), #6f7f52);
+    border-radius: 4px;
+    transition: height 0.6s ease;
+  }
+
+  .leaf {
+    position: absolute;
+    bottom: 30px;
+    width: 34px;
+    height: 18px;
+    background: var(--sage);
+    border-radius: 0 100% 0 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .leaf.left { left: 42%; transform: translateX(-100%) rotate(10deg); }
+  .leaf.right { right: 42%; transform: translateX(100%) rotate(-10deg) scaleX(-1); }
+  .leaf.show { opacity: 1; }
+
+  .bloom {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin-bottom: 80px;
+  }
+
+  .petal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 46px;
+    height: 68px;
+    background: linear-gradient(160deg, var(--blush), var(--rose));
+    border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+    transform-origin: bottom center;
+    opacity: 0;
+    scale: 0.2;
+    transition: opacity 0.6s ease, scale 0.6s cubic-bezier(.34,1.56,.64,1), transform 0.6s cubic-bezier(.34,1.56,.64,1);
+  }
+  .petal.show { opacity: 1; scale: 1; }
+
+  .petal:nth-child(1) { transform: translate(-50%,-100%) rotate(0deg); }
+  .petal:nth-child(2) { transform: translate(-50%,-100%) rotate(72deg); }
+  .petal:nth-child(3) { transform: translate(-50%,-100%) rotate(144deg); }
+  .petal:nth-child(4) { transform: translate(-50%,-100%) rotate(216deg); }
+  .petal:nth-child(5) { transform: translate(-50%,-100%) rotate(288deg); }
+
+  .petal.show:nth-child(1) { transform: translate(-50%,-100%) rotate(0deg) translateY(6px); }
+  .petal.show:nth-child(2) { transform: translate(-50%,-100%) rotate(72deg) translateY(6px); }
+  .petal.show:nth-child(3) { transform: translate(-50%,-100%) rotate(144deg) translateY(6px); }
+  .petal.show:nth-child(4) { transform: translate(-50%,-100%) rotate(216deg) translateY(6px); }
+  .petal.show:nth-child(5) { transform: translate(-50%,-100%) rotate(288deg) translateY(6px); }
+
+  .center-dot {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 22px; height: 22px;
+    background: var(--gold);
+    border-radius: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: 0 0 0 4px #fff, 0 2px 8px rgba(0,0,0,0.1);
+    opacity: 0;
+    transition: opacity 0.4s ease 0.3s;
+  }
+  .center-dot.show { opacity: 1; }
+
+  .msg-box {
+    min-height: 46px;
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: var(--wine);
+    margin: 6px 0 22px;
+    transition: opacity 0.4s ease;
+  }
+
+  button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--rose), var(--wine));
+    border: none;
+    padding: 14px 30px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 10px 24px -8px rgba(107,46,58,0.45);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
+    letter-spacing: 0.2px;
+  }
+  button:hover { transform: translateY(-2px); box-shadow: 0 14px 28px -8px rgba(107,46,58,0.55); }
+  button:active { transform: translateY(0px) scale(0.97); }
+  button:disabled { opacity: 0; pointer-events: none; }
+
+  .final {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 1s ease, opacity 1s ease;
+  }
+  .final.show {
+    max-height: 400px;
+    opacity: 1;
+    margin-top: 8px;
+  }
+
+  .final-text {
+    font-size: 15.5px;
+    color: #5A4145;
+    line-height: 1.7;
+    padding-top: 16px;
+    border-top: 1px dashed #E5CFCF;
+  }
+
+  .signature {
+    font-family: 'Caveat', cursive;
+    font-size: 26px;
+    color: var(--rose);
+    margin-top: 14px;
+  }
+
+  .heart {
+    position: fixed;
+    top: -20px;
+    font-size: 18px;
+    z-index: 5;
+    pointer-events: none;
+    animation: fall linear forwards;
+    opacity: 0.9;
+  }
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+
+  @media (max-width: 400px) {
+    .card { padding: 36px 22px 32px; }
+    h1 { font-size: 28px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="eyebrow">Ek chhoti si arzi...</div>
+  <h1>Sorry, Nehu 🌸</h1>
+  <div class="sub">Har click pe ek phool khilega, aur saath mein ek sachi baat</div>
+
+  <div class="garden">
+    <div class="stem" id="stem"></div>
+    <div class="leaf left" id="leafL"></div>
+    <div class="leaf right" id="leafR"></div>
+    <div class="bloom" id="bloom">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="center-dot" id="dot"></div>
+    </div>
+  </div>
+
+  <div class="msg-box" id="msgBox">Ek button dabao, shuru karte hain 👇</div>
+
+  <button id="sorryBtn" onclick="nextStage()">Sorry bolu? 🥺</button>
+
+  <div class="final" id="finalBox">
+    <div class="final-text">
+      Nehu, mujhe pata hai maine galti ki, aur tumhara naraz hona bilkul jaayez hai.
+      Tumhari smile mere din ki sabse acchi cheez hai, aur usko miss karna
+      mujhe bilkul accha nahi lag raha. Bas itna chahta hoon ki tum ek baar
+      muskura do, baaki sab main sambhal lunga. I'm sorry, sach mein. ❤️
+      <div class="signature">— Tumhara hi, hamesha</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const messages = [
+  "Ek phool khil raha hai... jaise meri sorry 🌱",
+  "Tum jab muskurati ho, sab kuch theek lagta hai 🌸",
+  "Sach mein maaf karna chahta hoon, dil se 💭",
+  "Tumhare bina sab adhoora sa lagta hai 🥺",
+  "Bas ek smile chahiye, promise karta hoon accha rahunga 🌷"
+];
+
+let stage = 0;
+const totalStages = 5;
+
+function spawnHearts(count) {
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => {
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.textContent = ['❤️','🌸','✨','💗'][Math.floor(Math.random()*4)];
+      h.style.left = Math.random() * 100 + 'vw';
+      h.style.animationDuration = (3 + Math.random()*2) + 's';
+      h.style.fontSize = (14 + Math.random()*14) + 'px';
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 6000);
+    }, i * 120);
+  }
+}
+
+function nextStage() {
+  stage++;
+  const msgBox = document.getElementById('msgBox');
+  msgBox.style.opacity = 0;
+
+  setTimeout(() => {
+    msgBox.textContent = messages[stage - 1];
+    msgBox.style.opacity = 1;
+  }, 200);
+
+  if (stage === 1) {
+    document.getElementById('stem').style.height = '90px';
+  }
+  if (stage === 2) {
+    document.getElementById('leafL').classList.add('show');
+    document.getElementById('leafR').classList.add('show');
+  }
+
+  const petals = document.querySelectorAll('.petal');
+  if (stage >= 1 && stage <= 5) {
+    petals[stage - 1].classList.add('show');
+  }
+
+  if (stage === totalStages) {
+    document.getElementById('dot').classList.add('show');
+    spawnHearts(24);
+    const btn = document.getElementById('sorryBtn');
+    btn.textContent = "Maaf kar diya? 🌸";
+    setTimeout(() => {
+      document.getElementById('finalBox').classList.add('show');
+      btn.disabled = true;
+      spawnHearts(16);
+    }, 700);
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Nehu ❤️</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,600;1,500&family=Poppins:wght@300;400;500&display=swap');
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; height: 100%; }
+
+  body {
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 50% -10%, #3D2060 0%, #2B1746 45%, #150B26 100%);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  .star {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle ease-in-out infinite;
+  }
+  @keyframes twinkle { 0%, 100% { opacity: 0.15; } 50% { opacity: 0.9; } }
+
+  .petal {
+    position: fixed;
+    top: -20px;
+    z-index: 0;
+    pointer-events: none;
+    animation: fall linear infinite;
+    opacity: 0.85;
+  }
+  @keyframes fall {
+    to { transform: translateY(115vh) translateX(var(--drift)) rotate(300deg); }
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    color: #C98FA8;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+    opacity: 0.9;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
+    color: #F3D9E6;
+    font-size: 36px;
+    margin: 0 0 6px;
+    text-shadow: 0 0 24px rgba(232,180,200,0.25);
+  }
+
+  .divider {
+    color: #C98FA8;
+    font-size: 15px;
+    letter-spacing: 8px;
+    margin-bottom: 12px;
+    opacity: 0.7;
+  }
+
+  p.sub {
+    color: rgba(232,180,200,0.6);
+    font-size: 13.5px;
+    margin-bottom: 38px;
+    font-weight: 300;
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 18px; }
+
+  a.card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    text-decoration: none;
+    background: linear-gradient(160deg, rgba(255,253,251,0.98), rgba(246,236,225,0.96));
+    border-radius: 20px;
+    padding: 22px 24px;
+    box-shadow: 0 20px 45px -18px rgba(0,0,0,0.55), 0 0 0 1px rgba(232,180,200,0.08);
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease;
+    text-align: left;
+  }
+
+  a.card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 40%, rgba(212,165,116,0.18) 50%, transparent 60%);
+    transform: translateX(-120%);
+    transition: transform 0.7s ease;
+  }
+
+  a.card:hover {
+    transform: translateY(-4px) scale(1.015);
+    box-shadow: 0 28px 55px -18px rgba(0,0,0,0.6), 0 0 0 1px rgba(232,180,200,0.18);
+  }
+  a.card:hover::before { transform: translateX(120%); }
+
+  .icon-badge {
+    flex-shrink: 0;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: radial-gradient(circle at 35% 30%, #E8B4C8, #C97B84 75%);
+    box-shadow: 0 6px 14px rgba(139,30,63,0.35);
+  }
+
+  .card-text { flex: 1; }
+
+  .title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 20px;
+    color: #5A2E3A;
+    margin-bottom: 3px;
+  }
+
+  .desc {
+    font-size: 12.5px;
+    color: #9A7B7E;
+    font-weight: 300;
+    line-height: 1.4;
+  }
+
+  .arrow {
+    flex-shrink: 0;
+    color: #C97B84;
+    font-size: 18px;
+    transition: transform 0.3s ease;
+  }
+  a.card:hover .arrow { transform: translateX(4px); }
+
+  .footer-note {
+    margin-top: 34px;
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    color: rgba(232,180,200,0.55);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="wrap">
+  <div class="eyebrow">ek chhota sa surprise</div>
+  <h1>For Nehu</h1>
+  <div class="divider">❀ ❀ ❀</div>
+  <p class="sub">Pyaar se bana, tumhare liye</p>
+
+  <div class="cards">
+    <a class="card" href="sorry_nehu.html">
+      <div class="icon-badge">🌸</div>
+      <div class="card-text">
+        <div class="title">Sorry, Nehu</div>
+        <div class="desc">Ek phool khilta hai, har click pe ek sachi baat</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a class="card" href="love_letter_nehu.html">
+      <div class="icon-badge">💌</div>
+      <div class="card-text">
+        <div class="title">Ek Chhupa Letter</div>
+        <div class="desc">Seal todo, aur dil ki baat padho</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+  </div>
+
+  <div class="footer-note">tumhare liye, hamesha ❤️</div>
+</div>
+
+<script>
+  const starsC = document.getElementById('stars');
+  for (let i = 0; i < 70; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2 + 1;
+    s.style.width = size + 'px';
+    s.style.height = size + 'px';
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.top = Math.random() * 100 + 'vh';
+    s.style.animationDuration = (2 + Math.random() * 3) + 's';
+    s.style.animationDelay = Math.random() * 3 + 's';
+    starsC.appendChild(s);
+  }
+
+  const petals = ['🌸','🌺','✨'];
+  function spawnPetal() {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = petals[Math.floor(Math.random() * petals.length)];
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.fontSize = (12 + Math.random() * 10) + 'px';
+    p.style.setProperty('--drift', (Math.random() * 120 - 60) + 'px');
+    p.style.animationDuration = (9 + Math.random() * 6) + 's';
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 16000);
+  }
+  setInterval(spawnPetal, 900);
+  for (let i = 0; i < 6; i++) setTimeout(spawnPetal, i * 300);
+</script>
+
+</body>
+</html>
