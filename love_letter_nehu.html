@@ -415,7 +415,14 @@ Tum meri sabse pyaari feeling ho, aur main chahta hoon ye hamesha aise hi rahe. 
     tick();
   }
 
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycbxM5u4f40Uzgi4RDx4GNTzFfUIL81qtw7TaGLJYIsLw_-UgBILJc2Pz7uxabkif7bAXFA/exec";
+
+  function logClick() {
+    fetch(SHEET_URL, { method: "POST", mode: "no-cors" }).catch(() => {});
+  }
+
   function loveBurst() {
+    logClick();
     const emojis = ['❤️','💕','🤍','✨','💫'];
     for (let i = 0; i < 26; i++) {
       setTimeout(() => {
