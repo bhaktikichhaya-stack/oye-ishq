@@ -418,15 +418,35 @@ Tum meri sabse pyaari feeling ho, aur main chahta hoon ye hamesha aise hi rahe. 
   const SHEET_URL = "https://script.google.com/macros/s/AKfycbx6L9At72Txfs2kCpvePDeaTq7PvVeoFL6KPaIiVCYRe7CI47ayJE8ymU5-DJw7Lp1Q1A/exec";
 
   function logClick() {
-    // Uses an image beacon (GET request) instead of fetch — this avoids
-    // CORS/redirect issues and works reliably across all browsers,
-    // ad-blockers, and extensions, since it's just loading an "image".
+    const url = SHEET_URL + "?t=" + Date.now();
+
+    // Method 1: image beacon
     try {
       const beacon = new Image();
-      beacon.src = SHEET_URL + "?t=" + Date.now();
-    } catch (err) {
-      // fail silently, never block the UI
-    }
+      beacon.src = url;
+    } catch (err) {}
+
+    // Method 2: hidden iframe (acts like a real page load, bypasses
+    // most fetch/XHR-based blockers since it's a navigation, not a fetch)
+    try {
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = url;
+      document.body.appendChild(iframe);
+      setTimeout(() => iframe.remove(), 5000);
+    } catch (err) {}
+
+    // Method 3: navigator.sendBeacon (built for exactly this use case)
+    try {
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(url);
+      }
+    } catch (err) {}
+
+    // Method 4: fetch as a last resort
+    try {
+      fetch(url, { mode: "no-cors" }).catch(() => {});
+    } catch (err) {}
   }
 
   function loveBurst() {
