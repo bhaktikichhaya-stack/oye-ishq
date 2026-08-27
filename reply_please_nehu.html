@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ek Reply, Nehu? 💭</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,600;1,500&family=Poppins:wght@300;400;500&display=swap');
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+
+  body {
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 50% -10%, #2E1A47 0%, #1B1035 55%, #100A22 100%);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 26px;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  .stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  .star { position: absolute; background: #fff; border-radius: 50%; animation: twinkle ease-in-out infinite; }
+  @keyframes twinkle { 0%,100% { opacity: 0.15; } 50% { opacity: 0.85; } }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    color: #E8B4C8;
+    opacity: 0.85;
+    margin-bottom: 4px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
+    color: #F6E9F0;
+    font-size: 28px;
+    margin: 0 0 26px;
+  }
+
+  /* Phone mockup */
+  .phone {
+    background: linear-gradient(160deg, #201133, #150B26);
+    border-radius: 28px;
+    padding: 18px 14px 20px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.04);
+  }
+
+  .chat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 8px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 14px;
+  }
+
+  .avatar {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #E8B4C8, #C97B84);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+  }
+
+  .chat-name {
+    font-size: 13.5px;
+    color: #F0E4EA;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .chat-status {
+    font-size: 10.5px;
+    color: #9C8AA8;
+    text-align: left;
+  }
+
+  .bubbles {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 190px;
+  }
+
+  .bubble {
+    align-self: flex-end;
+    max-width: 78%;
+    background: linear-gradient(135deg, #7B4B9E, #5A3580);
+    color: #F5EDF7;
+    font-size: 13.5px;
+    padding: 9px 14px;
+    border-radius: 16px 16px 4px 16px;
+    text-align: left;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: pop 0.5s ease forwards;
+  }
+  .bubble:nth-child(1) { animation-delay: 0.2s; }
+  .bubble:nth-child(2) { animation-delay: 0.7s; }
+  .bubble:nth-child(3) { animation-delay: 1.2s; }
+  @keyframes pop { to { opacity: 1; transform: translateY(0); } }
+
+  .seen-row {
+    align-self: flex-end;
+    font-size: 10px;
+    color: #7EA8D4;
+    margin-top: -2px;
+    opacity: 0;
+    animation: pop 0.5s ease forwards 1.8s;
+  }
+
+  .typing-ghost {
+    align-self: flex-start;
+    display: flex;
+    gap: 4px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 16px 16px 16px 4px;
+    opacity: 0;
+    animation: ghostFade 3.5s ease-in-out infinite;
+    animation-delay: 2.4s;
+  }
+  .typing-ghost span {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #B9A6C4;
+    animation: dot 1s ease-in-out infinite;
+  }
+  .typing-ghost span:nth-child(2) { animation-delay: 0.15s; }
+  .typing-ghost span:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes dot { 0%,100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-3px); opacity: 1; } }
+  @keyframes ghostFade { 0%, 15% { opacity: 0; } 25%, 70% { opacity: 1; } 85%, 100% { opacity: 0; } }
+
+  .waiting-line {
+    margin-top: 20px;
+    font-size: 12.5px;
+    color: #9C8AA8;
+  }
+  .waiting-line b { color: #E8B4C8; font-weight: 500; }
+
+  .heart-crack {
+    margin: 22px auto 6px;
+    width: 54px;
+    height: 54px;
+    position: relative;
+  }
+  .heart-crack svg { width: 100%; height: 100%; }
+
+  .plea {
+    margin-top: 26px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(232,180,200,0.15);
+    border-radius: 18px;
+    padding: 24px 22px;
+    text-align: left;
+  }
+
+  .plea-text {
+    font-family: 'Caveat', cursive;
+    font-size: 21px;
+    line-height: 1.55;
+    color: #F0E0EA;
+  }
+
+  .btn {
+    display: block;
+    margin: 26px auto 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 14.5px;
+    color: #201133;
+    background: linear-gradient(135deg, #F3D9E6, #E8B4C8);
+    border: none;
+    padding: 14px 30px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 12px 26px -10px rgba(232,180,200,0.5);
+    transition: transform 0.2s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: scale(0.96); }
+
+  .reveal {
+    margin-top: 18px;
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    color: #E8B4C8;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.6s ease, max-height 0.6s ease;
+  }
+  .reveal.show { opacity: 1; max-height: 200px; margin-top: 18px; }
+
+  .floaty {
+    position: fixed;
+    z-index: 6;
+    pointer-events: none;
+    font-size: 18px;
+    animation: floatUp 3s ease-out forwards;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(0.6); opacity: 0; }
+    15% { opacity: 1; }
+    100% { transform: translateY(-150px) scale(1.05); opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="wrap">
+  <div class="eyebrow">bas ek chhota sa message</div>
+  <h1>Nehu, kahan ho tum? 🥺</h1>
+
+  <div class="phone">
+    <div class="chat-header">
+      <div class="avatar">💜</div>
+      <div>
+        <div class="chat-name">Nehu</div>
+        <div class="chat-status" id="statusLine">seen • abhi</div>
+      </div>
+    </div>
+    <div class="bubbles">
+      <div class="bubble">Hey... sab theek hai na?</div>
+      <div class="bubble">Pata hai tum dekh rahi ho 👀</div>
+      <div class="bubble">Bas ek chhota sa reply hi kaafi hai ❤️</div>
+      <div class="seen-row">Seen ✓✓</div>
+    </div>
+    <div class="typing-ghost"><span></span><span></span><span></span></div>
+  </div>
+
+  <div class="waiting-line">Reply ka wait kar raha hoon... <b id="counter">0</b> seconds se</div>
+
+  <div class="heart-crack">
+    <svg viewBox="0 0 100 90">
+      <path id="heartPath" d="M50 82 C10 55 5 30 25 15 C38 5 50 15 50 25 C50 15 62 5 75 15 C95 30 90 55 50 82 Z"
+        fill="#7B4B9E" stroke="#E8B4C8" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div class="plea">
+    <div class="plea-text">
+      Pata hai tum thoda hurt ho, aur tumhari chup rehna bhi samajh aata hai...
+      par ek chhoti si baat sunogi? Jab tak tumhara reply nahi aata, mera dil bhi
+      thoda ruka sa rehta hai. Bas itna bata do ki tum theek ho — baaki sab main
+      sambhal lunga. Please, Nehu? 🤍
+    </div>
+  </div>
+
+  <button class="btn" onclick="sendLove()">Ek chhota sa 👋 bhejo</button>
+  <div class="reveal" id="reveal">"Achha baba... yahan hoon main." 💜</div>
+</div>
+
+<script>
+  const starsC = document.getElementById('stars');
+  for (let i = 0; i < 60; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2 + 1;
+    s.style.width = size + 'px';
+    s.style.height = size + 'px';
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.top = Math.random() * 100 + 'vh';
+    s.style.animationDuration = (2 + Math.random() * 3) + 's';
+    s.style.animationDelay = Math.random() * 3 + 's';
+    starsC.appendChild(s);
+  }
+
+  let seconds = 0;
+  const counterEl = document.getElementById('counter');
+  setInterval(() => {
+    seconds++;
+    counterEl.textContent = seconds;
+  }, 1000);
+
+  function sendLove() {
+    const reveal = document.getElementById('reveal');
+    reveal.classList.add('show');
+    const emojis = ['💜','✨','🤍','💫'];
+    for (let i = 0; i < 18; i++) {
+      setTimeout(() => {
+        const f = document.createElement('div');
+        f.className = 'floaty';
+        f.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        f.style.left = (35 + Math.random() * 30) + 'vw';
+        f.style.top = (55 + Math.random() * 20) + 'vh';
+        f.style.fontSize = (14 + Math.random() * 14) + 'px';
+        document.body.appendChild(f);
+        setTimeout(() => f.remove(), 3200);
+      }, i * 80);
+    }
+  }
+</script>
+
+</body>
+</html>
