@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry, Nehu 🌷</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,600;1,500&family=Poppins:wght@300;400;500&display=swap');
+
+  :root {
+    --night1: #150B26;
+    --night2: #2B1746;
+    --night3: #3D2060;
+    --cream: #FFF8F1;
+    --blush: #F3D4D8;
+    --rose: #C97B84;
+    --wine: #6B2E3A;
+    --sage: #8A9B6E;
+    --gold: #D4A574;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--cream);
+    color: var(--wine);
+    overflow-x: hidden;
+  }
+
+  section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+    position: relative;
+    text-align: center;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 30px;
+    margin: 0 0 8px;
+  }
+
+  .eyebrow {
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    color: var(--rose);
+    margin-bottom: 6px;
+  }
+
+  .sub { font-size: 13.5px; color: #9A7B7E; margin-bottom: 36px; max-width: 340px; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    background: radial-gradient(ellipse at 50% -10%, var(--night3) 0%, var(--night2) 45%, var(--night1) 100%);
+    color: var(--blush);
+  }
+  .hero .eyebrow { color: #E8B4C8; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 42px;
+    margin: 0 0 14px;
+    color: #F6E9F0;
+    text-shadow: 0 0 30px rgba(232,180,200,0.3);
+  }
+  .hero p { font-size: 14px; color: rgba(232,180,200,0.7); max-width: 300px; margin-bottom: 30px; }
+  .scroll-cue {
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    color: #C98FA8;
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+  .stars { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .star { position: absolute; background: #fff; border-radius: 50%; animation: twinkle ease-in-out infinite; }
+  @keyframes twinkle { 0%,100% { opacity: 0.15; } 50% { opacity: 0.85; } }
+  .hero > * { z-index: 1; }
+
+  /* ---------- JAR OF SORRIES ---------- */
+  .jar-wrap {
+    position: relative;
+    width: 150px;
+    height: 190px;
+    margin-bottom: 22px;
+  }
+  .jar-glass {
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 150px;
+    background: rgba(201,123,132,0.08);
+    border: 3px solid var(--rose);
+    border-radius: 12px 12px 20px 20px;
+    overflow: hidden;
+  }
+  .jar-lid {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 90px; height: 16px;
+    background: var(--wine);
+    border-radius: 6px;
+  }
+  .jar-hearts {
+    position: absolute;
+    bottom: 6px; left: 0; right: 0;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    gap: 4px;
+    padding: 0 8px;
+  }
+  .mini-heart {
+    font-size: 18px;
+    opacity: 0;
+    animation: dropIn 0.5s ease forwards;
+  }
+  @keyframes dropIn { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+
+  .jar-msg {
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    color: var(--wine);
+    min-height: 30px;
+    margin-bottom: 16px;
+  }
+
+  /* ---------- FLIP CARDS ---------- */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    max-width: 380px;
+    width: 100%;
+  }
+  .flip-card {
+    perspective: 800px;
+    height: 130px;
+  }
+  .flip-inner {
+    position: relative;
+    width: 100%; height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(.4,.2,.2,1);
+    cursor: pointer;
+  }
+  .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+  .flip-front, .flip-back {
+    position: absolute; inset: 0;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    box-shadow: 0 12px 24px -10px rgba(107,46,58,0.25);
+  }
+  .flip-front {
+    background: linear-gradient(160deg, var(--blush), #F7E4E6);
+    font-size: 26px;
+  }
+  .flip-back {
+    background: linear-gradient(160deg, var(--wine), #4A1F2A);
+    color: var(--cream);
+    transform: rotateY(180deg);
+    font-family: 'Caveat', cursive;
+    font-size: 16.5px;
+    line-height: 1.35;
+  }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline {
+    max-width: 360px;
+    width: 100%;
+    text-align: left;
+    position: relative;
+    padding-left: 26px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px; top: 6px; bottom: 6px;
+    width: 2px;
+    background: var(--blush);
+  }
+  .t-item {
+    position: relative;
+    margin-bottom: 26px;
+  }
+  .t-item::before {
+    content: '';
+    position: absolute;
+    left: -26px; top: 4px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--rose);
+    box-shadow: 0 0 0 4px var(--blush);
+  }
+  .t-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 16.5px; color: var(--wine); }
+  .t-desc { font-size: 13px; color: #9A7B7E; margin-top: 2px; }
+
+  /* ---------- FORGIVE QUIZ ---------- */
+  .quiz-box {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px 26px;
+    box-shadow: 0 20px 45px -18px rgba(107,46,58,0.25);
+    max-width: 340px;
+    width: 100%;
+  }
+  .quiz-q { font-family: 'Playfair Display', serif; font-style: italic; font-size: 19px; margin-bottom: 22px; }
+  .quiz-btns { position: relative; display: flex; justify-content: center; gap: 16px; height: 54px; }
+  .qbtn {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 12px 26px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+  }
+  .qbtn.yes { background: linear-gradient(135deg, var(--rose), var(--wine)); color: #fff; }
+  .qbtn.no { background: #F0E3E3; color: var(--wine); position: relative; transition: transform 0.25s ease; }
+  .quiz-result {
+    margin-top: 18px;
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    color: var(--wine);
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease, max-height 0.5s ease;
+  }
+  .quiz-result.show { opacity: 1; max-height: 100px; margin-top: 18px; }
+
+  /* ---------- FINAL LETTER ---------- */
+  .final-section {
+    background: radial-gradient(ellipse at 50% 110%, var(--night3) 0%, var(--night2) 55%, var(--night1) 100%);
+    color: var(--cream);
+  }
+  .letter-box {
+    background: var(--cream);
+    color: #4A3A3E;
+    border-radius: 14px;
+    padding: 34px 28px;
+    max-width: 380px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5);
+    text-align: left;
+  }
+  .letter-box .heading { font-family: 'Playfair Display', serif; font-style: italic; font-size: 22px; color: var(--wine); margin-bottom: 14px; text-align: center; }
+  .letter-box p { font-family: 'Caveat', cursive; font-size: 20px; line-height: 1.6; margin: 0 0 10px; }
+  .sign { text-align: right; color: var(--rose); font-family: 'Caveat', cursive; font-size: 22px; }
+
+  .final-emoji { font-size: 34px; margin-bottom: 14px; }
+
+  .floaty {
+    position: fixed;
+    z-index: 20;
+    pointer-events: none;
+    font-size: 18px;
+    animation: floatUp 3s ease-out forwards;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(0.6); opacity: 0; }
+    15% { opacity: 1; }
+    100% { transform: translateY(-160px) scale(1.05); opacity: 0; }
+  }
+
+  @media (max-width: 400px) {
+    .hero h1 { font-size: 32px; }
+    .cards-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="stars" id="stars"></div>
+  <div class="eyebrow">ek lambi si maafi, pyaar ke saath</div>
+  <h1>Sorry, Nehu 🌷</h1>
+  <p>Neeche scroll karo... kuch chhote chhote pyaare surprises tumhare liye hain</p>
+  <div class="scroll-cue">↓ scroll karo ↓</div>
+</section>
+
+<!-- JAR OF SORRIES -->
+<section>
+  <div class="eyebrow fade-in">pehla surprise</div>
+  <h2 class="fade-in">Sorry Jar</h2>
+  <div class="sub fade-in">Har click pe ek sorry jaar mein gir jaayegi, saath mein ek sachi baat</div>
+
+  <div class="jar-wrap fade-in">
+    <div class="jar-glass">
+      <div class="jar-hearts" id="jarHearts"></div>
+    </div>
+    <div class="jar-lid"></div>
+  </div>
+  <div class="jar-msg fade-in" id="jarMsg">Button dabao 👇</div>
+  <button class="qbtn yes fade-in" id="jarBtn" onclick="addSorry()">Ek sorry dalo 🌷</button>
+</section>
+
+<!-- FLIP CARDS -->
+<section>
+  <div class="eyebrow fade-in">dusra surprise</div>
+  <h2 class="fade-in">Tum Khaas Kyu Ho</h2>
+  <div class="sub fade-in">Cards pe tap karo</div>
+  <div class="cards-grid fade-in" id="cardsGrid"></div>
+</section>
+
+<!-- TIMELINE -->
+<section>
+  <div class="eyebrow fade-in">teesra surprise</div>
+  <h2 class="fade-in">Chhoti Chhoti Yaadein</h2>
+  <div class="sub fade-in">Jo mujhe hamesha yaad rahengi</div>
+  <div class="timeline fade-in" id="timelineList"></div>
+</section>
+
+<!-- FORGIVE QUIZ -->
+<section>
+  <div class="eyebrow fade-in">aakhri sawaal</div>
+  <h2 class="fade-in">Ek Chhota Sa Sawaal</h2>
+  <div class="sub fade-in">Bas ek "haan" ki zaroorat hai</div>
+
+  <div class="quiz-box fade-in">
+    <div class="quiz-q">Kya tum mujhe maaf karogi? 🥺</div>
+    <div class="quiz-btns">
+      <button class="qbtn yes" onclick="forgiveYes()">Haan ❤️</button>
+      <button class="qbtn no" id="noBtn" onmouseover="dodge()" ontouchstart="dodge()">Nahi</button>
+    </div>
+    <div class="quiz-result" id="quizResult">Yayy! Tumne meri jaan bacha di 🌸 I love you, Nehu.</div>
+  </div>
+</section>
+
+<!-- FINAL LETTER -->
+<section class="final-section">
+  <div class="final-emoji fade-in">💌</div>
+  <div class="eyebrow fade-in" style="color:#E8B4C8;">last mein, ek chhoti si baat</div>
+  <div class="letter-box fade-in">
+    <div class="heading">Meri Nehu,</div>
+    <p>Maine galti ki, aur mujhe pata hai tumhe hurt hua.</p>
+    <p>Par tumhare bina din adhoora sa lagta hai — na tumhari hasi, na tumhari naraz waali cute si voice.</p>
+    <p>Bas ek chance chahiye, promise karta hoon behtar banunga.</p>
+    <p>I'm sorry, sach mein. Aur haan... I love you. Bahut zyada. ❤️</p>
+    <div class="sign">— Tumhara hi, hamesha</div>
+  </div>
+</section>
+
+<script>
+  // Stars
+  const starsC = document.getElementById('stars');
+  for (let i = 0; i < 70; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2 + 1;
+    s.style.width = size + 'px';
+    s.style.height = size + 'px';
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.top = Math.random() * 100 + 'vh';
+    s.style.animationDuration = (2 + Math.random() * 3) + 's';
+    s.style.animationDelay = Math.random() * 3 + 's';
+    starsC.appendChild(s);
+  }
+
+  // Fade in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Jar of sorries
+  const jarMessages = [
+    "Sorry ki pehli boond 🌱",
+    "Tumhari smile miss kar raha hoon 🌸",
+    "Sach mein dil se sorry 💭",
+    "Tumhare bina sab adhoora sa hai 🥺",
+    "Bas ek chance, promise behtar banunga 🌷"
+  ];
+  let jarCount = 0;
+  function addSorry() {
+    if (jarCount >= jarMessages.length) return;
+    const heart = document.createElement('div');
+    heart.className = 'mini-heart';
+    heart.textContent = '💗';
+    heart.style.animationDelay = '0s';
+    document.getElementById('jarHearts').appendChild(heart);
+    document.getElementById('jarMsg').textContent = jarMessages[jarCount];
+    jarCount++;
+    if (jarCount === jarMessages.length) {
+      document.getElementById('jarBtn').textContent = "Jar bhar gaya 🌷";
+      document.getElementById('jarBtn').disabled = true;
+      document.getElementById('jarBtn').style.opacity = '0.6';
+    }
+  }
+
+  // Flip cards - reasons
+  const reasons = [
+    "Tumhari hasi 😊",
+    "Tumhara gussa bhi cute lagta hai 😤",
+    "Tum meri best friend ho 🤍",
+    "Tumhari caring nature 🌸",
+    "Har chhoti baat share karna 💬",
+    "Bas... tum tum ho ❤️"
+  ];
+  const grid = document.getElementById('cardsGrid');
+  reasons.forEach((r) => {
+    const card = document.createElement('div');
+    card.className = 'flip-card';
+    card.innerHTML = `
+      <div class="flip-inner">
+        <div class="flip-front">🌷</div>
+        <div class="flip-back">${r}</div>
+      </div>`;
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+    grid.appendChild(card);
+  });
+
+  // Timeline
+  const memories = [
+    { t: "Pehli baar milna", d: "Jab pehli baar tumse baat hui thi" },
+    { t: "Pehli ladai", d: "Aur usके baad pehli sorry bhi" },
+    { t: "Chhoti chhoti baatein", d: "Jo har din ko special banati hain" },
+    { t: "Aaj", d: "Jab main tumhe maafi maang raha hoon, dil se" }
+  ];
+  const tl = document.getElementById('timelineList');
+  memories.forEach(m => {
+    const item = document.createElement('div');
+    item.className = 't-item';
+    item.innerHTML = `<div class="t-title">${m.t}</div><div class="t-desc">${m.d}</div>`;
+    tl.appendChild(item);
+  });
+
+  // Forgive quiz
+  function dodge() {
+    const btn = document.getElementById('noBtn');
+    const x = (Math.random() * 100 - 50);
+    const y = (Math.random() * 40 - 20);
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+  }
+  function forgiveYes() {
+    document.getElementById('quizResult').classList.add('show');
+    const emojis = ['❤️','🌸','✨','💗'];
+    for (let i = 0; i < 22; i++) {
+      setTimeout(() => {
+        const f = document.createElement('div');
+        f.className = 'floaty';
+        f.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        f.style.left = (30 + Math.random() * 40) + 'vw';
+        f.style.top = (50 + Math.random() * 25) + 'vh';
+        f.style.fontSize = (14 + Math.random() * 16) + 'px';
+        document.body.appendChild(f);
+        setTimeout(() => f.remove(), 3200);
+      }, i * 70);
+    }
+  }
+</script>
+
+</body>
+</html>
